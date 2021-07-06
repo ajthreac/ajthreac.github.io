@@ -2054,7 +2054,7 @@ p > code {
 .bg-color .bg-color {
       background: transparent !important;
     }body {
-      background-color: #eee;
+      background-color: #f8f9fa;
     }.header {
         width: 960px;
         margin: 0 auto;
@@ -2119,7 +2119,7 @@ p > code {
       .nav-item a {
         color:  #555;
       }.nav-item a:hover {
-        color: #f783ac;
+        color: #faa2c1;
       }.nav-item-active {
       background: #f9f9f9e5;
     }
@@ -2164,13 +2164,13 @@ p > code {
       background-color: #ffffffe5;
     }
     .site-meta {
-      background: #f783ac !important;
+      background: #faa2c1 !important;
     }
     .head-top-line {
-      background: #f783ac;
+      background: #faa2c1;
     }
     .brand {
-      background: #f783ace5;
+      background: #faa2c1e5;
     }
     .main-title, .brand {
       color: #FFF !important;
