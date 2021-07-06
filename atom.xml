@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://ajthreac.github.io</id>
+    <title>ajthreac的小窝</title>
+    <updated>2021-07-06T02:54:03.053Z</updated>
+    <generator>https://github.com/jpmonette/feed</generator>
+    <link rel="alternate" href="https://ajthreac.github.io"/>
+    <link rel="self" href="https://ajthreac.github.io/atom.xml"/>
+    <subtitle>ご注文はブログですか？</subtitle>
+    <logo>https://ajthreac.github.io/images/avatar.png</logo>
+    <icon>https://ajthreac.github.io/favicon.ico</icon>
+    <rights>All rights reserved 2021, ajthreac的小窝</rights>
+</feed>
