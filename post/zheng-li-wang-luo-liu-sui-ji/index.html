@@ -8,7 +8,7 @@
 <meta name="keywords" content="Gridea静态个人博客">
 <meta name="description" content="ご注文はブログですか？">
 <meta name="theme-color" content="#faa2c1">
-<title>ajthreac的新博客 | ajthreac的小窝</title>
+<title>【整理】网络流随记 | ajthreac的小窝</title>
 <link rel="shortcut icon" href="/favicon.ico?v=1625569636150">
 <link rel="stylesheet" href="/media/css/gemini.css">
 <link rel="stylesheet" href="/media/fonts/font-awesome.css">
@@ -41,7 +41,7 @@
 
 
 
-  <meta name="description" content="ajthreac的新博客" />
+  <meta name="description" content="【整理】网络流随记" />
   <meta name="keywords" content="" />
 </head>
 
@@ -193,7 +193,8 @@
       <div class="sidebar-body gemini" id="sidebar_body">
         
           
-            
+            <div class="post-side-meta" id="post_side_meta">
+              
 <div class="sidebar-wrapper box-shadow-wrapper bg-color">
   <div class="sidebar-item">
     <img class="site-author-image right-motion" src="/images/avatar.png"/>
@@ -229,6 +230,221 @@
 
 
 </div>
+            </div>
+            <div class="post-toc sidebar-body-active" id="post_toc" style="opacity: 1;">
+              <div class="toc-box right-motion">
+  <div class="toc-wrapper auto-number auto"
+    id="toc_wrapper">
+    <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#0%E6%A6%82%E8%BF%B0">0.概述</a></li>
+<li><a href="#1-ek-%E7%AE%97%E6%B3%95">1. EK 算法</a></li>
+<li><a href="#2-dinic-%E7%AE%97%E6%B3%95">2. Dinic 算法</a></li>
+<li><a href="#3%E5%BA%94%E7%94%A8">3.应用</a></li>
+<li><a href="#4%E6%80%BB%E7%BB%93">4.总结</a></li>
+<li><a href="#5%E7%BB%83%E4%B9%A0%E9%A2%98">5.练习题</a></li>
+<li><a href="#0%E6%A6%82%E8%BF%B0-2">0.概述</a></li>
+<li><a href="#1-ssp-%E7%AE%97%E6%B3%95">1. SSP 算法</a></li>
+<li><a href="#2%E5%BA%94%E7%94%A8">2.应用</a></li>
+<li><a href="#3%E6%80%BB%E7%BB%93">3.总结</a></li>
+<li><a href="#4%E7%BB%83%E4%B9%A0%E9%A2%98">4.练习题</a></li>
+<li><a href="#0%E6%A6%82%E8%BF%B0-3">0.概述</a></li>
+<li><a href="#1%E6%9C%80%E5%A4%A7%E6%B5%81%E7%9A%84%E5%BA%94%E7%94%A8">1.最大流的应用</a></li>
+<li><a href="#2%E6%9C%80%E5%B0%8F%E5%89%B2%E7%9A%84%E5%BA%94%E7%94%A8">2.最小割的应用</a></li>
+<li><a href="#3%E8%B4%B9%E7%94%A8%E6%B5%81%E7%9A%84%E5%BA%94%E7%94%A8">3.费用流的应用</a></li>
+<li><a href="#0%E5%89%8D%E8%A8%80">0.前言</a></li>
+<li><a href="#1%E4%B8%8A%E4%B8%8B%E7%95%8C%E7%BD%91%E7%BB%9C%E6%B5%81">1.上下界网络流</a>
+<ul>
+<li><a href="#10-%E6%97%A0%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E5%8F%AF%E8%A1%8C%E6%B5%81">1.0 无源汇上下界可行流</a></li>
+<li><a href="#11-%E6%9C%89%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E5%8F%AF%E8%A1%8C%E6%B5%81">1.1 有源汇上下界可行流</a></li>
+<li><a href="#12-%E6%9C%89%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E6%9C%80%E5%A4%A7%E6%B5%81">1.2 有源汇上下界最大流</a></li>
+<li><a href="#13-%E6%9C%89%E6%BA%90%E6%B1%87%E4%B8%8A%E4%B8%8B%E7%95%8C%E6%9C%80%E5%B0%8F%E8%B4%B9%E7%94%A8%E5%8F%AF%E8%A1%8C%E6%B5%81">1.3 有源汇上下界最小费用可行流</a></li>
+<li><a href="#14-%E4%B9%A0%E9%A2%98">1.4 习题</a></li>
+</ul>
+</li>
+<li><a href="#2%E6%9C%80%E5%B0%8F%E5%89%B2%E6%A0%91gomory-hu-tree">2.最小割树（Gomory-Hu Tree）</a></li>
+<li><a href="#3%E5%AE%8C%E7%BB%93%E6%92%92%E8%8A%B1">3.完结撒花</a></li>
+</ul>
+</li>
+</ul>
+
+  </div>
+</div>
+
+<script>
+
+  let lastTop = 0, lList = [], hList = [], postBody, lastIndex = -1;
+  let active = 'active-show', activeClass = 'active-current';
+  let tocWrapper = document.querySelector('#toc_wrapper');
+  let tocContent = tocWrapper.children[0];
+  let autoNumber = tocWrapper && tocWrapper.classList.contains('auto-number');
+
+  function addTocNumber(elem, deep) {
+    if (!elem) {
+      return;
+    }
+    let prop = elem.__proto__;
+
+    if (prop === HTMLUListElement.prototype) {
+      for (let i = 0; i < elem.children.length; i++) {
+        addTocNumber(elem.children[i], deep + (i + 1) + '.');
+      }
+    } else if (prop === HTMLLIElement.prototype) {
+      // 保存li元素
+      if (elem.children[0] && elem.children[0].__proto__ === HTMLAnchorElement.prototype) {
+        lList.push(elem);
+      }
+      for (let i = 0; i < elem.children.length; i++) {
+        let cur = elem.children[i];
+        if (cur.__proto__ === HTMLAnchorElement.prototype) {
+          if (autoNumber) {
+            cur.text = deep + ' ' + cur.text;
+          }
+        } else if (cur.__proto__ === HTMLUListElement.prototype) {
+          addTocNumber(cur, deep);
+        }
+      }
+    }
+  }
+
+  function removeParentActiveClass() {
+    let parents = tocContent.querySelectorAll('.' + active)
+    parents.forEach(function (elem) {
+      elem.classList.remove(active);
+    });
+  }
+
+  function addActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.add(activeClass);
+    }
+  }
+
+  function removeActiveClass(index) {
+    if (index >= 0 && index < hList.length) {
+      lList[index].classList.remove(activeClass);
+    }
+  }
+
+  function addActiveLiElemment(elem, parent) {
+    if (!elem || elem === parent) {
+      return;
+    } else {
+      if (elem.__proto__ === HTMLLIElement.prototype) {
+        elem.classList.add(active);
+      }
+      addActiveLiElemment(elem.parentElement, parent);
+    }
+  }
+
+  function showToc() {
+    if (tocWrapper) {
+      postBody = document.querySelector('#post_body');
+      for (let i = 0; i < postBody.children.length; i++) {
+        if (postBody.children[i].__proto__ === HTMLHeadingElement.prototype) {
+          hList.push(postBody.children[i]);
+        }
+      }
+      if (tocWrapper.classList.contains('compress')) {
+        tocContent.classList.add('closed');
+      } else if (tocWrapper.classList.contains('no_compress')) {
+        tocContent.classList.add('expanded');
+      } else {
+        if (hList.length > 10) {
+          active = 'active-hidden'
+          tocContent.classList.add('closed');
+        } else {
+          tocContent.classList.add('expanded');
+        }
+      }
+    }
+  }
+
+  (function () {
+    // 处理不是从#一级标题开始目录
+    if (tocContent.children.length === 1 && tocContent.children[0].__proto__ === HTMLLIElement.prototype) {
+      let con = tocContent.children[0].children[0];
+      tocContent.innerHTML = con.innerHTML;
+    }
+    let markdownItTOC = document.querySelector('.markdownIt-TOC');
+    let innerHeight = window.innerHeight;
+    markdownItTOC.style = `max-height: ${innerHeight - 80 > 0 ? innerHeight - 80 : innerHeight}px`
+    addTocNumber(tocContent, '');
+  })();
+
+  document.addEventListener('scroll', function (e) {
+    if (lList.length <= 0) {
+      return;
+    }
+    let scrollTop = document.scrollingElement.scrollTop + 10;
+    let dir;
+
+    if (lastTop - scrollTop > 0) {
+      dir = 'up';
+    } else {
+      dir = 'down';
+    }
+
+    lastTop = scrollTop;
+    if (scrollTop <= 0) {
+      if (lastIndex >= 0 && lastIndex < hList.length) {
+        lList[lastIndex].classList.remove(activeClass);
+      }
+      return;
+    }
+
+    let current = 0, hasFind = false;
+    for (let i = 0; i < hList.length; i++) {
+      if (hList[i].offsetTop > scrollTop) {
+        current = i;
+        hasFind = true;
+        break;
+      }
+    }
+    if (!hasFind && scrollTop > lList[lList.length - 1].offsetTop) {
+      current = hList.length - 1;
+    } else {
+      current--;
+    }
+    if (dir === 'down') {
+      if (current > lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex)
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    } else {
+      if (current < lastIndex) {
+        addActiveClass(current);
+        removeActiveClass(lastIndex);
+        lastIndex = current;
+        removeParentActiveClass();
+        lList[current] && addActiveLiElemment(lList[current].parentElement, tocContent);
+      }
+    }
+  });
+
+
+  window.addEventListener('load', function () {
+    showToc();
+    document.querySelector('#sidebar').style = 'display: block;';
+    tocWrapper.classList.add('toc-active');
+    setTimeout(function () {
+      if ("createEvent" in document) {
+        let evt = document.createEvent("HTMLEvents");
+        evt.initEvent("scroll", false, true);
+        document.dispatchEvent(evt);
+      }
+      else {
+        document.fireEvent("scroll");
+      }
+    }, 500)
+  })
+
+</script>
+            </div>
           
         
       </div>
@@ -316,8 +532,8 @@
           <div class="section bg-color post post-page">
             <section class="post-header">
   <h1 class="post-title">
-    <a class="post-title-link" href="https://ajthreac.github.io/post/ajthreac-de-xin-bo-ke/">
-      ajthreac的新博客
+    <a class="post-title-link" href="https://ajthreac.github.io/post/zheng-li-wang-luo-liu-sui-ji/">
+      【整理】网络流随记
     </a>
   </h1>
   <div class="post-meta">
@@ -325,24 +541,847 @@
     <span class="meta-item pc-show">
       <i class="fa fa-calendar-o"></i>
       <span class="language" data-lan="publish">发布于</span>
-      <span class="publish-time" data-t="2021-07-06 10:55:33">2021-07-06</span>
+      <span class="publish-time" data-t="2021-07-06 19:03:51">2021-07-06</span>
       <span class="post-meta-divider pc-show">|</span>
     </span>
     
     <span class="meta-item">
       <i class="fa fa-clock-o"></i>
-      <span>1<span class="language" data-lan="minute">分钟</span></span>
+      <span>43<span class="language" data-lan="minute">分钟</span></span>
     </span>
     <span class="meta-item">
       <span class="post-meta-divider">|</span>
       <i class="fa fa-file-word-o"></i>
-      <span>26<span class="pc-show language" data-lan="words">字数</span></span>
+      <span>9440<span class="pc-show language" data-lan="words">字数</span></span>
     </span>
     
   </div>
 </section>
             <div class="post-body next-md-body" id="post_body">
-              <p>主要用于存放一些自认为有价值的东西，会在<a href="https://www.cnblogs.com/juruoajh/">博客园</a>同步更新</p>
+              <p>搬运自博客园，将三篇合为一篇。<br>
+<a href="https://www.cnblogs.com/juruoajh/p/14162978.html">上篇——最大流</a></p>
+<h2 id="0概述">0.概述</h2>
+<p>我第一次听到网络流这个名词的时候觉得它会很高深，实际上学了之后还是很好理解的。<br>
+<a href="https://baike.baidu.com/item/%E6%9C%80%E5%A4%A7%E6%B5%81%E9%97%AE%E9%A2%98/19144252?fr=aladdin">百度百科（看看就好，没几句人话）</a><br>
+最大流的概念直接看定义不好理解，我们来从一个实例引入：<br>
+<img src="https://cdn.luogu.com.cn/upload/image_hosting/wjxwti52.png" alt="0.0" loading="lazy"><br>
+如图，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi></mrow><annotation encoding="application/x-tex">S</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span></span></span></span>可以看成是一个水库（称作源点），有无限多的水，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>可以看成是废水收集站（汇点），可以收集无限多的水。中间的点是一些村庄，村庄与源点、汇点以及村庄与村庄之间有一些单向的输水管道，每个管道都有一个固定的容量。问在不炸管道的情况下，汇点最多能收集到多少水（每个村庄进来的水量和出去的是一样的）。</p>
+<p>我们很快就会有一个贪心的想法：先随便找路径，找到了就把流量减去这条路径上的最大流，直到找不到新的路径为止。<br>
+但这个想法是很容易被 hack 的：我们看这样一个图，<br>
+<img src="https://cdn.luogu.com.cn/upload/image_hosting/sraudo8l.png" alt="0.1" loading="lazy"><br>
+如果第一次随机扩展出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>→</mo><mn>1</mn><mo>→</mo><mn>2</mn><mo>→</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">S\rightarrow1\rightarrow2\rightarrow T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>这条路，增加了1的总流量，那么此时算法会认为我们没法继续走了，返回答案1。<br>
+很明显这个答案是错的，因为我们可以找到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>→</mo><mn>1</mn><mo>→</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">S\rightarrow1\rightarrow T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>和<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>→</mo><mn>2</mn><mo>→</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">S\rightarrow2\rightarrow T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>两条路径使得答案为2。<br>
+计算机是不会看到整个图的，我们要给它一个选错边之后反悔的机会。说到反悔，很多人可能会想到搜索中的回溯，但是那样复杂度就不能保证了。这也是接下来我们讲到的网络流的精髓——反向边。</p>
+<h2 id="1-ek-算法">1. EK 算法</h2>
+<p>我们假设现在每条边都有一条初始流量为0的反向边，找出一条流量大于零的路径（又称增广路）时就把路径上所有边的容量减去该流量，反向边加上该流量。<br>
+我们继续按照刚才的方法找增广路，此时我们可以找到一条路径<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>→</mo><mn>2</mn><mo>→</mo><mn>1</mn><mo>→</mo><mi>T</mi></mrow><annotation encoding="application/x-tex">S\rightarrow2\rightarrow1\rightarrow T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">→</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>。中间经过了一条2到1的反向边，它表示什么意思呢？<br>
+如图，下面表示了走反向边的的意义：<br>
+<img src="https://cdn.luogu.com.cn/upload/image_hosting/j3y1bcye.png" alt="1.0" loading="lazy"><br>
+由此可见，反向边的作用就是打上一个标记，给程序反悔的机会并且避免了暴力回溯。<br>
+那么 EK 算法的框架也就出现了：每次 BFS 出一条增广路，然后修改每条边及其反向边的容量，将流量累加起来。<br>
+这只是核心思想，具体实现中有一些注意事项（例如反向边的实现等），会在代码中以注释提及。<br>
+<a href="https://www.luogu.com.cn/problem/P3376">洛谷P3376 【模板】网络最大流</a>核心代码：</p>
+<pre><code class="language-cpp">const int N=210,M=5010;
+int n,m,s,t,ans; 
+int lst[N],vis[N];
+struct Edge {
+	int to,nxt,flow;
+}e[M&lt;&lt;1];
+//此时cnt要等于一个奇数，我们让它等于-1，
+//也就是说第一条边的编号为0，这样可以方便地利用异或求反向边 
+int hd[N],cnt=-1;
+il void ade(int u,int v,int w){
+	e[++cnt].to=v,e[cnt].flow=w;
+	e[cnt].nxt=hd[u],hd[u]=cnt;
+}
+il bool BFS(){//返回有没有增广路（即能否走到汇点） 
+	memset(vis,0,sizeof(vis));
+	memset(lst,0,sizeof(lst));
+	queue&lt;int&gt;q;
+	q.push(s),vis[s]=1;
+	while(!q.empty()){
+		int u=q.front();q.pop();
+		for(rg int i=hd[u];~i;i=e[i].nxt){
+			int v=e[i].to;
+			//根据增广路的定义，只走有流量的边 
+			if(!vis[v]&amp;&amp;e[i].flow){ 
+				lst[v]=i;//记录当前增广路 
+				if(v==t)return 1;
+				q.push(v),vis[v]=1;
+			}
+		}
+	}
+	return 0;
+}
+il void Update(){
+	int mxflow=INF,i;
+	for(rg int u=t;u!=s;u=e[i^1].to){//顺着反向边走到源点 
+		i=lst[u],mxflow=min(mxflow,e[i].flow);
+	}
+	for(rg int u=t;u!=s;u=e[i^1].to){
+		i=lst[u];
+		//同时更新正向边和反向边 
+		e[i].flow-=mxflow,e[i^1].flow+=mxflow;
+	}
+	ans+=mxflow;
+}
+il void EK(){
+	while(BFS()){
+		Update();//只要找到增广路就更新 
+	}
+}
+signed main(){
+	memset(hd,-1,sizeof(hd));
+	Read(n),Read(m),Read(s),Read(t);
+	for(rg int i=1,u,v,w;i&lt;=m;i++){
+		Read(u),Read(v),Read(w);
+		ade(u,v,w),ade(v,u,0);
+	}
+	EK();
+	cout&lt;&lt;ans&lt;&lt;endl;
+	return 0;
+}
+</code></pre>
+<h2 id="2-dinic-算法">2. Dinic 算法</h2>
+<p>EK 算法一次只能找一条增广路，太慢了怎么办？于是就出现了 Dinic 算法。<br>
+与 EK 算法不同的是， Dinic 算法的 BFS 部分改为了将整个图分层，此时我们要求只能从一层走到下一层。<br>
+这样就可以实现求出最短增广路，避免绕远。<br>
+为了实现多路增广，我们写一个 DFS ，枚举一个点的所有出边，将流量加起来就得到了总流量。<br>
+下面给出同一个模板题的代码，注释相比 EK 的代码更加详尽，请结合注释来细致理解（由于代码是四个多月前写的所以码风有些许不同）：</p>
+<pre><code class="language-cpp">#define N 210
+#define M 5010
+int n,m,s,t,ans;
+int vis[N],dep[N];//dep是每个点的层数 
+struct Edge {
+	//frm没有用，忽略即可（我也不知道当时是怎么想的） 
+	int frm,to,nxt,wei;
+}e[M&lt;&lt;1];
+int head[N],cnt;
+inline void ade(int u,int v,int w){
+	e[cnt].frm=u,e[cnt].to=v,e[cnt].wei=w;
+	e[cnt].nxt=head[u],head[u]=cnt++;
+}
+bool BFS(){//分层 
+	memset(vis,0,sizeof(vis));
+	memset(dep,-1,sizeof(dep));
+	queue&lt;int&gt;q;
+	q.push(s),vis[s]=1,dep[s]=0;
+	while(!q.empty()){
+		int u=q.front();
+		q.pop();
+		for(rg int i=head[u];~i;i=e[i].nxt){
+			int v=e[i].to;
+			if(!vis[v]&amp;&amp;e[i].wei&gt;0){//能走到的点才加入分层图 
+				q.push(v),vis[v]=1,dep[v]=dep[u]+1;
+			}
+		}
+	}
+	return (dep[t]!=-1);//能否走到汇点（有没有增广路） 
+}
+int DFS(int now,int flowin){//now节点流入了flowin，能流出多少 
+	int flowout=0;
+	if(now==t)return flowin;//到了汇点直接返回 
+	for(rg int i=head[now];~i&amp;&amp;flowin;i=e[i].nxt){
+		int v=e[i].to;
+		if(dep[v]==dep[now]+1&amp;&amp;e[i].wei&gt;0){//只能走到下一层 
+			int mxflow=DFS(v,min(flowin,e[i].wei));//继续往下流 
+			if(!mxflow)dep[v]=-1;//这里是一个小优化： 
+			//如果当前点流不下去了，那么它一定不能再对答案产生贡献
+			//此时将dep标为-1，表示不能再走这个点 
+			e[i].wei-=mxflow,e[i^1].wei+=mxflow;//与EK同样的做法 
+			flowin-=mxflow,flowout+=mxflow;
+		}
+	}
+	return flowout;
+}
+void Dinic(){
+	while(BFS()){//只要有增广路就不断流 
+		ans+=DFS(s,INF);
+	}
+}
+signed main(){
+	Read(n),Read(m),Read(s),Read(t);
+	memset(head,-1,sizeof(head));
+	for(rg int i=1;i&lt;=m;i++){
+		int u,v,w;
+		Read(u),Read(v),Read(w);
+		ade(u,v,w),ade(v,u,0);
+	}
+	Dinic();
+	cout&lt;&lt;ans&lt;&lt;endl;
+	return 0;
+}
+</code></pre>
+<p>另外要注意的是，无论是 EK 还是 Dinic ，都有一些小细节：<br>
+由于边从0开始编号，<code>head</code>数组要赋为-1，遍历时不能写<code>for(int i=hd[u];i;i=e[i].nxt)</code>而是<code>~i</code>或<code>i!=-1</code>。<s>（我被坑过无数次了）</s><br>
+BFS 前记得把<code>vis</code>什么的初始化一遍。<br>
+注意数据范围，例如洛谷的模板题就需要开<code>long long</code>。</p>
+<h2 id="3应用">3.应用</h2>
+<p>你可能会问，刚刚讲了这么一大堆乱七八糟的，网络流到底有什么用呢？我们来看几个例题：<br>
+<strong>例题一：</strong><a href="https://www.luogu.com.cn/problem/P2756">洛谷P2756 飞行员配对方案问题</a><br>
+相信来学网络流的各位都接触过二分图匹配，现在告诉你，它也可以用网络流做！<br>
+我们知道网络流需要有源点和汇点，那我们就人为给它创造出一个。<br>
+更具体地，从超级源点 S 向所有点连一条容量为1的边，再从所有点向超级汇点 T 连一条容量为1的边，点之间再按照题目要求连容量为1的边。<br>
+那么这时候如果手玩一下就会发现，这个图的最大流就是二分图的最大匹配！<br>
+感性理解一下：一个点只能流进来1，表示只能匹配1个，那么我们要找到最多条匹配边，实际上就是求一个最大流。<br>
+此题要记录方案怎么办？ DFS 时顺便记录一下就好了。<br>
+用 Dinic 做二分图匹配的复杂度据说是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><msqrt><mi>m</mi></msqrt><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n\sqrt{m})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.05028em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault">m</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span><span class="mclose">)</span></span></span></span>的<s>但我显然不会证</s>。<br>
+代码留作练习。<s>（其实是作者懒得写了qvq）</s><br>
+<strong>例题二：</strong><a href="https://www.luogu.com.cn/problem/P2891">洛谷P2891 [USACO07OPEN]Dining G</a><br>
+相信<s>根据刚刚的经验</s>大家可以yy出一种简单的建图方式：超级源点连食物，食物连奶牛，奶牛连饮料，饮料连超级汇点。<br>
+但是如果仔细读题的话会发现这个连法很明显是错误的：每头奶牛只能选一种食物和饮料，这样连边会导致一头牛连多个食物和饮料。<br>
+为了满足这个限制我们需要让一头牛只流过1单位的水，那么我们可以把一头牛拆成两个点，中间连一条容量为1的边，就保证了一头牛只对应一种食物和饮料。<br>
+最终顺序是：超级源点-&gt;食物-&gt;奶牛1-&gt;奶牛2-&gt;饮料-&gt;超级汇点（每条边容量都是1）。</p>
+<pre><code class="language-cpp">#define N 4100
+#define M 203100
+int n,f,d,s,t,ans;
+int vis[N],dep[N];
+struct Edge {
+	int to,nxt,wei;
+}e[M&lt;&lt;1];
+int head[N],cnt;
+inline void ade(int u,int v,int w){
+	e[cnt].to=v,e[cnt].wei=w;
+	e[cnt].nxt=head[u],head[u]=cnt++;
+}
+bool BFS(){
+	memset(vis,0,sizeof(vis));
+	memset(dep,-1,sizeof(dep));
+	queue&lt;int&gt;q;
+	q.push(s),vis[s]=1,dep[s]=0;
+	while(!q.empty()){
+		int u=q.front();
+		q.pop();
+		for(rg int i=head[u];~i;i=e[i].nxt){
+			int v=e[i].to;
+			if(!vis[v]&amp;&amp;e[i].wei&gt;0){
+				q.push(v),vis[v]=1,dep[v]=dep[u]+1;
+			}
+		}
+	}
+	return (dep[t]!=-1);
+}
+int DFS(int now,int flowin){
+	int flowout=0;
+	if(now==t)return flowin;
+	for(rg int i=head[now];~i&amp;&amp;flowin;i=e[i].nxt){
+		int v=e[i].to;
+		if(dep[v]==dep[now]+1&amp;&amp;e[i].wei&gt;0){
+			int mxflow=DFS(v,min(flowin,e[i].wei));
+			if(!mxflow)dep[v]=-1;
+			e[i].wei-=mxflow,e[i^1].wei+=mxflow;
+			flowin-=mxflow,flowout+=mxflow;
+		}
+	}
+	return flowout;
+}
+void Dinic(){
+	while(BFS()){
+		ans+=DFS(s,INF);
+	}
+}
+int main(){
+	Read(n),Read(f),Read(d);
+	s=0,t=2*n+f+d+1;
+	memset(head,-1,sizeof(head));
+	for(rg int i=1;i&lt;=f;i++)ade(s,i,1),ade(i,s,0);//超级源点连食物
+	for(rg int i=1;i&lt;=d;i++)ade(f+2*n+i,t,1),ade(t,f+2*n+i,0);//饮料连超级汇点
+	for(rg int i=1;i&lt;=n;i++)ade(f+i,f+n+i,1),ade(f+n+i,f+i,0);//奶牛拆点连自己
+	for(rg int i=1;i&lt;=n;i++){
+		int fi,di,ff,dd;
+		Read(fi),Read(di);
+		for(rg int j=1;j&lt;=fi;j++){//食物连奶牛1
+			Read(ff);
+			ade(ff,f+i,1),ade(f+i,ff,0);
+		}
+		for(rg int j=1;j&lt;=di;j++){//奶牛2连饮料
+			Read(dd);
+			ade(f+n+i,f+2*n+dd,1),ade(f+2*n+dd,f+n+i,0);
+		}
+	}
+	Dinic();
+	cout&lt;&lt;ans&lt;&lt;endl;
+	return 0;
+}
+</code></pre>
+<p><strong>例题三：</strong><a href="https://www.luogu.com.cn/problem/P2598">洛谷P2598 [ZJOI2009]狼和羊的故事</a><br>
+超级源点连到所有狼的领地，所有羊的领地连到超级汇点（两组边容量均为<code>INF</code>），每个点向四周的点连容量为1的边（表示可以走到）。<br>
+那么如何才算是将狼和羊分开了呢？我们发现，只要源点不能到达汇点，也就意味着所有狼点都不能通过一些路径走到羊点，此时狼和羊就分开了。而题目的要求篱笆最短也就是让我们求最小割。<br>
+最小割和最大流有什么关系呢？事实上，它们是相等的！具体证明可以上网找最小割最大流定理。<br>
+那么我们就成功切掉了这个题：</p>
+<pre><code class="language-cpp">#define N 100010
+int n,m,s,t,ans,mp[110][110];
+int dep[N],vis[N];
+struct Edge {
+	int to,nxt,wei;
+}e[N&lt;&lt;1];
+int head[N],cnt;
+inline void ade(int u,int v,int w){
+	e[cnt].to=v,e[cnt].wei=w;
+	e[cnt].nxt=head[u],head[u]=cnt++;
+	e[cnt].to=u,e[cnt].wei=0;
+	e[cnt].nxt=head[v],head[v]=cnt++;
+}
+bool BFS(){
+	memset(dep,-1,sizeof(dep));
+	memset(vis,0,sizeof(vis));
+	queue&lt;int&gt;q;
+	q.push(s),dep[s]=0,vis[s]=1;
+	while(!q.empty()){
+		int u=q.front();
+		q.pop();
+		for(rg int i=head[u];~i;i=e[i].nxt){
+			int v=e[i].to;
+			if(!vis[v]&amp;&amp;e[i].wei&gt;0){
+				q.push(v),dep[v]=dep[u]+1,vis[v]=1;
+			}
+		}
+	}
+	return (dep[t]!=-1);
+}
+int DFS(int now,int flowin){
+	int flowout=0;
+	if(now==t)return flowin;
+	for(rg int i=head[now];~i;i=e[i].nxt){
+		int v=e[i].to;
+		if(dep[v]==dep[now]+1&amp;&amp;e[i].wei&gt;0){
+			int mxflow=DFS(v,min(flowin,e[i].wei));
+			if(!mxflow)dep[v]=-1;
+			e[i].wei-=mxflow,e[i^1].wei+=mxflow;
+			flowin-=mxflow,flowout+=mxflow;
+		}
+	}
+	return flowout;
+}
+void Dinic(){
+	while(BFS()){
+		ans+=DFS(s,INF);
+	}
+}
+int dx[4]={1,0,-1,0};
+int dy[4]={0,1,0,-1};
+inline int Idx(int x,int y){
+	return (x-1)*m+y;
+}
+int main(){
+	Read(n),Read(m);
+	memset(head,-1,sizeof(head));
+	s=0,t=n*m+1;
+	for(rg int i=1;i&lt;=n;i++){
+		for(rg int j=1;j&lt;=m;j++){
+			Read(mp[i][j]);
+			if(mp[i][j]==1)ade(s,Idx(i,j),INF);
+			else if(mp[i][j]==2)ade(Idx(i,j),t,INF);
+		}
+	}
+	for(rg int i=1;i&lt;=n;i++){
+		for(rg int j=1;j&lt;=m;j++){
+			for(rg int k=0;k&lt;4;k++){
+				int xx=i+dx[k],yy=j+dy[k];
+				if(xx&amp;&amp;yy&amp;&amp;xx&lt;=n&amp;&amp;yy&lt;=m){
+					if(mp[xx][yy]!=1&amp;&amp;mp[i][j]!=2){
+						ade(Idx(i,j),Idx(xx,yy),1);
+					}
+				}
+			}
+		}
+	}
+	Dinic();
+	cout&lt;&lt;ans&lt;&lt;endl;
+	return 0;
+}
+</code></pre>
+<p>由上面几个例题可以看出，大多数时候网络流的关键在于建图，如何将一个不像网络流的题转化为网络流，是大家做题时需要考虑的。</p>
+<h2 id="4总结">4.总结</h2>
+<p>网络流有许多分支及应用，这篇博客只讲解了最大流的 EK 和 Dinic 算法，还有它们的一些优化以及<s>玄学的</s> ISAP 和 HLPP 算法没有提及（但是作者也不会）。<br>
+另外如果把边加上一个单位流量的花费，就变成了费用流，这是我们下期博客要讨论的话题。<br>
+总而言之，网络流是一种省选及以上范围内用途广泛的一种模型，一定要掌握透彻。</p>
+<h2 id="5练习题">5.练习题</h2>
+<p><a href="https://www.luogu.com.cn/problem/list?keyword=&amp;tag=332&amp;page=1">网络流24题</a><br>
+<a href="https://www.luogu.com.cn/problem/P2472">洛谷P2472 [SCOI2007]蜥蜴</a><br>
+<a href="https://www.luogu.com.cn/problem/P1791">洛谷P1791 [国家集训队]人员雇佣</a><br>
+<a href="https://www.cnblogs.com/juruoajh/p/14195463.html">中篇——费用流</a><br>
+<a href="https://www.cnblogs.com/juruoajh/p/14162978.html">前篇：最大流</a></p>
+<h2 id="0概述-2">0.概述</h2>
+<p>我们在之前已经探讨了网络最大流的定义、两种求法及应用，如果有不了解的同学可以翻阅我之前的博客。<br>
+而费用流（最小费用最大流）与普通最大流的区别就是它在每条边上加了一个单位流量的费用，需要在满足最大流的同时满足费用最小。<br>
+<a href="https://baike.baidu.com/item/%E6%9C%80%E5%B0%8F%E8%B4%B9%E7%94%A8%E6%9C%80%E5%A4%A7%E6%B5%81/15757993?fr=aladdin">百度百科（比最大流还不像人话，建议跳过）</a><br>
+费用流的应用比最大流更加广泛，所以我们将在这一期探讨费用流的求法及少量应用。</p>
+<h2 id="1-ssp-算法">1. SSP 算法</h2>
+<blockquote>
+<p>SSP（Successive Shortest Path）算法：在最大流的 EK 算法求解最大流的基础上，把 <strong>用 BFS 求解任意增广路</strong> 改为 <strong>用 SPFA 求解单位费用之和最小的增广路</strong> 即可。—— OI Wiki</p>
+</blockquote>
+<p>通俗地讲，所谓 SSP 算法，就是 EK + SPFA 。<br>
+那么它是根据什么原理来实现的呢？我们来分析一下（作者才疏学浅如有失误敬请指出）。<br>
+这种算法其实是利用了贪心的思想：我们每次利用 SPFA 求费用的一条最短路，实际上就是保证了在这条路上走的花费是最小的。<br>
+接下来我们按照 EK 算法的思路，不断寻找增广路，最终一定可以得到一个答案且这个答案为最大流。那么此时由于每条路径上的费用都是最小的，总费用也一定是最小的，证毕。<br>
+代码实现很简单，把 BFS 改为 SPFA ，然后记录一下最短路径即可。<br>
+<a href="https://www.luogu.com.cn/problem/P3381">洛谷P3381 【模板】最小费用最大流</a> 核心代码：</p>
+<pre><code class="language-cpp">#define N 5010
+#define M 50010
+int n,m,s,t,ans,ansflow;
+int dis[N],lst[N],vis[N];
+struct Edge {
+	int to,nxt,flow,wei;
+}e[M&lt;&lt;1];
+int hd[N],cnt=-1;
+il void ade(int u,int v,int w,int c){
+	e[++cnt].to=v,e[cnt].flow=w;
+	e[cnt].wei=c,e[cnt].nxt=hd[u],hd[u]=cnt;
+}
+il bool SPFA(){//SPFA求费用的一条最短路
+	memset(dis,0x3f,sizeof(dis));
+	memset(lst,0,sizeof(lst));
+	memset(vis,0,sizeof(vis));
+	queue&lt;int&gt;q;
+	q.push(s),vis[s]=1,dis[s]=0;
+	while(!q.empty()){
+		int u=q.front();q.pop(),vis[u]=0;
+		for(rg int i=hd[u];~i;i=e[i].nxt){
+			int v=e[i].to;
+			if(dis[v]&gt;dis[u]+e[i].wei&amp;&amp;e[i].flow){//在SPFA的基础上增加了一条能作为增广路的判断（还有流量）
+				dis[v]=dis[u]+e[i].wei,lst[v]=i;//lst用于记录路径
+				if(!vis[v]){
+					q.push(v),vis[v]=1;
+				}
+			}
+		}
+	}
+	return dis[t]!=INF;//能不能找到一条增广路
+}
+il int Update(int &amp;flowout){//与普通EK的代码实现几乎一样
+	int mxflow=INF,res=0,i;
+	for(rg int u=t;u!=s;u=e[i^1].to){
+		i=lst[u],mxflow=min(mxflow,e[i].flow);
+	}
+	for(rg int u=t;u!=s;u=e[i^1].to){
+		i=lst[u];
+		e[i].flow-=mxflow,e[i^1].flow+=mxflow;
+		res+=e[i].wei*mxflow;//记录费用
+	}
+	flowout+=mxflow;
+	return res;
+}
+void EK(int &amp;flowout){
+	while(SPFA()){
+		ans+=Update(flowout);
+	}
+}
+int main(){
+	Read(n),Read(m),Read(s),Read(t);
+	memset(hd,-1,sizeof(hd));
+	for(rg int i=1,u,v,w,c;i&lt;=m;i++){
+		Read(u),Read(v),Read(w),Read(c);
+		ade(u,v,w,c),ade(v,u,0,-c);//注意反向边的费用是负的
+	}
+	EK(ansflow);
+	cout&lt;&lt;ansflow&lt;&lt;&quot; &quot;&lt;&lt;ans&lt;&lt;endl;
+	return 0;
+}
+</code></pre>
+<p>从代码中可以看出，费用图中的某些边权可能是负数，所以我们需要使用 SPFA 算法求最短路。（虽然有解决方案但是应该没有什么出题人会在这里卡 SPFA 罢）<br>
+另外，求费用流还有一种类 Dinic 算法，大家可以自行查找资料学习。</p>
+<h2 id="2应用">2.应用</h2>
+<p>与最大流一样，费用流也有多种有（du）趣（liu）的应用。<br>
+<strong>例题一：</strong><a href="https://www.luogu.com.cn/problem/P4014">洛谷P4014 分配问题</a><br>
+上期我们讲了如何将<strong>二分图最大匹配</strong>转为最大流，今天我们将解决带权匹配的情况。<br>
+可以看出这道题是一个带权二分图完美匹配，可以用费用流来解决。<br>
+具体地说，从超级源点向每个人连流量为1、费用为0的边，从每个工作向超级汇点连流量为1、费用为0的边，表示一个人匹配一个工作。<br>
+然后从每个人向每个工作连流量为1、费用为<code>c[i][j]</code>的边，表示走了这条路会增加<code>c[i][j]</code>的效益。<br>
+此时在图上求超级源点到超级汇点的费用流即可求出最小效益。<br>
+最大效益把费用改成负数即可，记得答案也要取反。<br>
+垃圾代码：</p>
+<pre><code class="language-cpp">#define N 110
+int n,s,t,c[N][N],ans,flowout;
+int dis[N&lt;&lt;1],lst[N&lt;&lt;1],vis[N&lt;&lt;1];
+struct Edge {
+	int to,nxt,flow,wei;
+}e[N*N+N+N];
+int hd[N&lt;&lt;1],cnt=-1;
+il void ade(int u,int v,int c,int w){
+	e[++cnt].to=v,e[cnt].flow=c,e[cnt].wei=w;
+	e[cnt].nxt=hd[u],hd[u]=cnt;
+}
+il bool SPFA(){
+	memset(dis,0x3f,sizeof(dis));
+	memset(lst,0,sizeof(lst));
+	memset(vis,0,sizeof(vis));
+	queue&lt;int&gt;q;
+	q.push(s),dis[s]=0,vis[s]=1;
+	while(!q.empty()){
+		int u=q.front();q.pop(),vis[u]=0;
+		for(rg int i=hd[u];~i;i=e[i].nxt){
+			int v=e[i].to;
+			if(dis[v]&gt;dis[u]+e[i].wei&amp;&amp;e[i].flow){
+				dis[v]=dis[u]+e[i].wei,lst[v]=i;
+				if(!vis[v]){
+					q.push(v),vis[v]=1;
+				}
+			}
+		}
+	}
+	return dis[t]!=INF;
+}
+il int Update(int &amp;flowout){
+	int mxflow=INF,res=0,i;
+	for(rg int u=t;u!=s;u=e[i^1].to){
+		i=lst[u],mxflow=min(mxflow,e[i].flow);
+	}
+	for(rg int u=t;u!=s;u=e[i^1].to){
+		i=lst[u];
+		e[i].flow-=mxflow,e[i^1].flow+=mxflow;
+		res+=mxflow*e[i].wei;
+	}
+	flowout+=mxflow;
+	return res;
+}
+il void EK(int &amp;flowout){
+	while(SPFA()){
+		ans+=Update(flowout);
+	}
+}
+int main(){
+	memset(hd,-1,sizeof(hd));
+	Read(n);
+	for(rg int i=1;i&lt;=n;i++){
+		for(rg int j=1;j&lt;=n;j++)Read(c[i][j]);
+	}
+	s=0,t=2*n+1;//超级源点和超级汇点
+	for(rg int i=1;i&lt;=n;i++)ade(s,i,1,0),ade(i,s,0,0);//第一轮连边
+	for(rg int i=n+1;i&lt;=n+n;i++)ade(i,t,1,0),ade(t,i,0,0);
+	for(rg int i=1;i&lt;=n;i++){
+		for(rg int j=1;j&lt;=n;j++){
+			ade(i,n+j,1,c[i][j]),ade(n+j,i,0,-c[i][j]);
+		}
+	}
+	EK(flowout);
+	cout&lt;&lt;ans&lt;&lt;endl;
+	memset(hd,-1,sizeof(hd)),cnt=-1,ans=flowout=0;
+	for(rg int i=1;i&lt;=n;i++)ade(s,i,1,0),ade(i,s,0,0);//第二轮连边
+	for(rg int i=n+1;i&lt;=n+n;i++)ade(i,t,1,0),ade(t,i,0,0);
+	for(rg int i=1;i&lt;=n;i++){
+		for(rg int j=1;j&lt;=n;j++){
+			ade(i,n+j,1,-c[i][j]),ade(n+j,i,0,c[i][j]);
+		}
+	}//感觉写两次太丑了...但是为了方便就先这样吧
+	EK(flowout);
+	cout&lt;&lt;-ans&lt;&lt;endl;
+	return 0;
+}
+</code></pre>
+<p><strong>例题二：</strong><a href="https://www.luogu.com.cn/problem/P2517">洛谷P2517 [HAOI2010]订货</a><br>
+这道题可以用 dp 等其他解法解决，但我们现在来讲解网络流的做法。<br>
+仔细分析题目可以得出三个条件：<br>
+1.每个月可以买入任意多产品，单价为<code>d[i]</code>；<br>
+2.每个月可以卖出至多<code>U[i]</code>的产品，无代价；<br>
+3.每个月可以向下个月储存至多<code>S</code>的产品，单价为<code>m</code>。<br>
+那么我们按照这三个条件建图，超级源点连每个月，每个月连下个月，每个月连超级汇点。<br>
+代码即为<code>ade(s,i,INF,d[i])</code>、<code>ade(i,t,U[i],0)</code>、<code>ade(i,i+1,S,m)</code>（没有写出反向边）。<br>
+此时求费用流即得答案，一条流可以看成一个产品从买入到卖出的经历。<br>
+垃圾代码：</p>
+<pre><code class="language-cpp">#define N 60
+int n,m,S,U[N],d[N],s,t,ans,flowout;
+int dis[N],lst[N],vis[N];
+struct Edge {
+	int to,nxt,flow,wei;
+}e[N&lt;&lt;3];
+int hd[N],cnt=-1;
+il void ade(int u,int v,int c,int w){
+	e[++cnt].to=v,e[cnt].flow=c,e[cnt].wei=w;
+	e[cnt].nxt=hd[u],hd[u]=cnt;
+}
+il bool SPFA(){
+	memset(dis,0x3f,sizeof(dis));
+	memset(lst,0,sizeof(lst));
+	memset(vis,0,sizeof(vis));
+	queue&lt;int&gt;q;
+	q.push(s),dis[s]=0,vis[s]=1;
+	while(!q.empty()){
+		int u=q.front();q.pop(),vis[u]=0;
+		for(rg int i=hd[u];~i;i=e[i].nxt){
+			int v=e[i].to;
+			if(dis[v]&gt;dis[u]+e[i].wei&amp;&amp;e[i].flow){
+				dis[v]=dis[u]+e[i].wei,lst[v]=i;
+				if(!vis[v]){
+					q.push(v),vis[v]=1;
+				}
+			}
+		}
+	}
+	return dis[t]!=INF;
+}
+il int Update(int &amp;flowout){
+	int mxflow=INF,res=0,i;
+	for(rg int u=t;u!=s;u=e[i^1].to){
+		i=lst[u],mxflow=min(mxflow,e[i].flow);
+	}
+	for(rg int u=t;u!=s;u=e[i^1].to){
+		i=lst[u];
+		e[i].flow-=mxflow,e[i^1].flow+=mxflow;
+		res+=mxflow*e[i].wei;
+	}
+	flowout+=mxflow;
+	return res;
+}
+il void EK(int &amp;flowout){
+	while(SPFA()){
+		ans+=Update(flowout);
+	}
+}
+il void Build(){
+	for(rg int i=1;i&lt;=n;i++)ade(s,i,INF,d[i]),ade(i,s,0,-d[i]);
+	for(rg int i=1;i&lt;=n;i++)ade(i,t,U[i],0),ade(t,i,0,0);
+	for(rg int i=1;i&lt;n;i++)ade(i,i+1,S,m),ade(i+1,i,0,-m);
+}
+int main(){
+	memset(hd,-1,sizeof(hd));
+	Read(n),Read(m),Read(S);
+	for(rg int i=1;i&lt;=n;i++)Read(U[i]);
+	for(rg int i=1;i&lt;=n;i++)Read(d[i]);
+	s=0,t=n+1;
+	Build();
+	EK(flowout);
+	cout&lt;&lt;ans&lt;&lt;endl;
+	return 0;
+}
+</code></pre>
+<h2 id="3总结">3.总结</h2>
+<p>费用流也是网络流的一种，与最大流一样可以用来解决一些不那么像网络流的问题，本文只提到了其应用的冰山一角，下一篇文章里我们将会深入探讨网络流的各种优化及建模方式。</p>
+<h2 id="4练习题">4.练习题</h2>
+<p><a href="https://www.luogu.com.cn/problem/list?keyword=&amp;tag=332&amp;page=1">网络流24题</a><br>
+<a href="https://www.luogu.com.cn/problem/P2469">洛谷P2469 [SDOI2010]星际竞速</a><br>
+<a href="https://www.cnblogs.com/juruoajh/p/14208194.html">下篇——应用</a><br>
+<a href="https://www.cnblogs.com/juruoajh/p/14162978.html">前篇：最大流</a><br>
+<a href="https://www.cnblogs.com/juruoajh/p/14195463.html">中篇：费用流</a><br>
+<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mstyle mathcolor="red"><mrow><mi>T</mi><mi>i</mi><mi>p</mi><mi>s</mi><mo>:</mo><mi>P</mi><mi>l</mi><mi>e</mi><mi>a</mi><mi>s</mi><mi>e</mi><mtext> </mtext><mi>r</mi><mi>e</mi><mi>a</mi><mi>d</mi><mtext> </mtext><mi>t</mi><mi>h</mi><mi>e</mi><mtext> </mtext><mi>a</mi><mi>b</mi><mi>o</mi><mi>v</mi><mi>e</mi><mtext> </mtext><mi>t</mi><mi>w</mi><mi>o</mi><mtext> </mtext><mi>a</mi><mi>r</mi><mi>t</mi><mi>i</mi><mi>c</mi><mi>l</mi><mi>e</mi><mi>s</mi><mtext> </mtext><mi>f</mi><mi>i</mi><mi>r</mi><mi>s</mi><mi>t</mi><mo>!</mo></mrow></mstyle></mrow><annotation encoding="application/x-tex">\color{red}{Tips:Please\ read\ the\ above\ two\ articles\ first!}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord" style="color:red;"><span class="mord mathdefault" style="margin-right:0.13889em;color:red;">T</span><span class="mord mathdefault" style="color:red;">i</span><span class="mord mathdefault" style="color:red;">p</span><span class="mord mathdefault" style="color:red;">s</span><span class="mspace" style="color:red;margin-right:0.2777777777777778em;"></span><span class="mrel" style="color:red;">:</span><span class="mspace" style="color:red;margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;color:red;">P</span><span class="mord mathdefault" style="margin-right:0.01968em;color:red;">l</span><span class="mord mathdefault" style="color:red;">e</span><span class="mord mathdefault" style="color:red;">a</span><span class="mord mathdefault" style="color:red;">s</span><span class="mord mathdefault" style="color:red;">e</span><span class="mspace" style="color:red;"><span style="color:red;"> </span></span><span class="mord mathdefault" style="margin-right:0.02778em;color:red;">r</span><span class="mord mathdefault" style="color:red;">e</span><span class="mord mathdefault" style="color:red;">a</span><span class="mord mathdefault" style="color:red;">d</span><span class="mspace" style="color:red;"><span style="color:red;"> </span></span><span class="mord mathdefault" style="color:red;">t</span><span class="mord mathdefault" style="color:red;">h</span><span class="mord mathdefault" style="color:red;">e</span><span class="mspace" style="color:red;"><span style="color:red;"> </span></span><span class="mord mathdefault" style="color:red;">a</span><span class="mord mathdefault" style="color:red;">b</span><span class="mord mathdefault" style="color:red;">o</span><span class="mord mathdefault" style="margin-right:0.03588em;color:red;">v</span><span class="mord mathdefault" style="color:red;">e</span><span class="mspace" style="color:red;"><span style="color:red;"> </span></span><span class="mord mathdefault" style="color:red;">t</span><span class="mord mathdefault" style="margin-right:0.02691em;color:red;">w</span><span class="mord mathdefault" style="color:red;">o</span><span class="mspace" style="color:red;"><span style="color:red;"> </span></span><span class="mord mathdefault" style="color:red;">a</span><span class="mord mathdefault" style="margin-right:0.02778em;color:red;">r</span><span class="mord mathdefault" style="color:red;">t</span><span class="mord mathdefault" style="color:red;">i</span><span class="mord mathdefault" style="color:red;">c</span><span class="mord mathdefault" style="margin-right:0.01968em;color:red;">l</span><span class="mord mathdefault" style="color:red;">e</span><span class="mord mathdefault" style="color:red;">s</span><span class="mspace" style="color:red;"><span style="color:red;"> </span></span><span class="mord mathdefault" style="margin-right:0.10764em;color:red;">f</span><span class="mord mathdefault" style="color:red;">i</span><span class="mord mathdefault" style="margin-right:0.02778em;color:red;">r</span><span class="mord mathdefault" style="color:red;">s</span><span class="mord mathdefault" style="color:red;">t</span><span class="mclose" style="color:red;">!</span></span></span></span></span></p>
+<h2 id="0概述-3">0.概述</h2>
+<p>之前我们提到过，网络流的难点在于建模，所以本篇文章主要对网络流的各种<s>奇奇怪怪的</s>建模方式做一些粗浅的探讨，请确保你对网络流基础已经有了了解。<br>
+另外，本文不会涉及太多难题，如果觉得太简单，可以自行查找论文资料。</p>
+<h2 id="1最大流的应用">1.最大流的应用</h2>
+<p><strong>例题一：</strong><a href="https://www.luogu.com.cn/problem/P3191">洛谷P3191 [HNOI2007]紧急疏散EVACUATE</a><br>
+首先可以想到二分时间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span>，然后就转化成了在规定时间内能不能撤离的问题。<br>
+题目中说到，每个时刻每个门只能对应一个人，不难想到将人和门连边，然后求最大匹配，若是所有人都能匹配上某个时刻的门，就说明撤离成功。<br>
+如图所示，设某个人最少需要花<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi></mrow><annotation encoding="application/x-tex">t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span></span></span></span>的时刻到达一个门，那么可以如此连边：<br>
+<img src="https://cdn.luogu.com.cn/upload/image_hosting/axtzup7f.png" alt="1.0.0" loading="lazy"><br>
+但是如果计算一下空间复杂度就会发现这样连边显然不行，于是我们采用一个常用的 trick ：<br>
+<img src="https://cdn.luogu.com.cn/upload/image_hosting/zj6989nx.png" alt="1.0.1" loading="lazy"><br>
+这样，我们把每个时刻的门向下一个时刻连边，表示可以站着等，人到门只需要连一条边即可。于是我们就 A 掉了这个题。<br>
+**总结：**对于含有一一对应关系的题目，可以尝试转化为二分图匹配来求解。<br>
+<strong>例题二：</strong><a href="https://www.luogu.com.cn/problem/P4311">洛谷P4311 士兵占领</a><br>
+这道题要求最小士兵数量，我们可以转化一下这个问题：每个士兵可以对一行或者一列产生贡献，我们需要让同时产生两个贡献的士兵最多（也就是最多可以删去多少多余的士兵）。<br>
+那么此时贡献为2的士兵一行最多有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>r</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">r_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>个，一列最多有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">c_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>个。我们可以考虑对每行每列分别建一个点，超级原点连每行（容量为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>r</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">r_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>），每列连超级汇点（容量为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">c_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>），行列之间连容量为1的边表示能放。<br>
+此时一条可行的流代表了一个贡献为2的士兵，答案就是最多要放的士兵数减去贡献为2的士兵。<br>
+**总结：**对于放置的个数有限制且一个放置有明确意义的题目，可以尝试转化为最大流来求解。</p>
+<h2 id="2最小割的应用">2.最小割的应用</h2>
+<p><strong>例题三：</strong><a href="https://www.luogu.com.cn/problem/P2057">洛谷P2057 [SHOI2007]善意的投票/[JLOI2010]冠军调查</a><br>
+这道题让我们求最小的冲突数，我们可以想到使用最小割来求解。<br>
+考虑如何表示一对朋友的选择：<br>
+设超级源点和超级汇点分别表示两种意愿，每个人连到自己的意愿（容量为1），朋友之间连双向边（容量为1）。<br>
+如图表示了两种情况下的选择（边上的字表示割掉此边的意义）：<br>
+<img src="https://cdn.luogu.com.cn/upload/image_hosting/vlm714bs.png" alt="2.0.0" loading="lazy"><br>
+<img src="https://cdn.luogu.com.cn/upload/image_hosting/qwww1wki.png" alt="2.0.1" loading="lazy"><br>
+此时一个最小割就表示了一种选择方案。<br>
+**总结：**对于存在收益冲突的收益最大化/冲突最小化问题，可以尝试转化为最小割来求解。<br>
+<strong>例题四：</strong><a href="https://www.luogu.com.cn/problem/P1646">洛谷P1646 [国家集训队]happiness</a><br>
+这道题也是做出选择使收益最大化类型的，我们可以考虑最小割：算出所有的收益，然后减去最小割。<br>
+发现最多同时涉及两个人的关系，我们可以分情况讨论:<br>
+<img src="https://cdn.luogu.com.cn/upload/image_hosting/ecif0b6l.png" alt="2.1.0" loading="lazy"><br>
+假设从超级源点连出来的边代表文科收益，连到超级汇点的边代表理科收益，两人之间的边代表共同收益，那么我们可以列出方程组表示不同情况下损失的收益（其中<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>v</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>v</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">v_1,v_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>分别代表同时选文、选理的收益）：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mtext>同时选理：</mtext><msub><mi>w</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>2</mn></msub><mo>=</mo><msub><mi>v</mi><mn>2</mn></msub><mspace linebreak="newline"></mspace><mtext>同时选文：</mtext><msub><mi>w</mi><mn>4</mn></msub><mo>+</mo><msub><mi>w</mi><mn>5</mn></msub><mo>=</mo><msub><mi>v</mi><mn>1</mn></msub><mspace linebreak="newline"></mspace><mtext>一文一理：</mtext><msub><mi>w</mi><mn>1</mn></msub><mo>+</mo><msub><mi>w</mi><mn>3</mn></msub><mo>+</mo><msub><mi>w</mi><mn>5</mn></msub><mo>=</mo><msub><mi>w</mi><mn>2</mn></msub><mo>+</mo><msub><mi>w</mi><mn>3</mn></msub><mo>+</mo><msub><mi>w</mi><mn>4</mn></msub><mo>=</mo><msub><mi>v</mi><mn>1</mn></msub><mo>+</mo><msub><mi>v</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">\text{同时选理：}w_1+w_2=v_2\\
+\text{同时选文：}w_4+w_5=v_1\\
+\text{一文一理：}w_1+w_3+w_5=w_2+w_3+w_4=v_1+v_2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord text"><span class="mord cjk_fallback">同时选理：</span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord text"><span class="mord cjk_fallback">同时选文：</span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord text"><span class="mord cjk_fallback">一文一理：</span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.73333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></span></p>
+<p>解得</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>w</mi><mn>3</mn></msub><mo>=</mo><mfrac><mrow><msub><mi>v</mi><mn>1</mn></msub><mo>+</mo><msub><mi>v</mi><mn>2</mn></msub></mrow><mn>2</mn></mfrac><mspace linebreak="newline"></mspace><msub><mi>w</mi><mn>1</mn></msub><mo>=</mo><msub><mi>w</mi><mn>2</mn></msub><mo>=</mo><mfrac><msub><mi>v</mi><mn>2</mn></msub><mn>2</mn></mfrac><mspace linebreak="newline"></mspace><msub><mi>w</mi><mn>4</mn></msub><mo>=</mo><msub><mi>w</mi><mn>5</mn></msub><mo>=</mo><mfrac><msub><mi>v</mi><mn>1</mn></msub><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">w_3=\frac{v_1+v_2}{2}\\
+w_1=w_2=\frac{v_2}{2}\\
+w_4=w_5=\frac{v_1}{2}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.9463300000000001em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.2603300000000002em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.7935599999999998em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1075599999999999em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.7935599999999998em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.1075599999999999em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>这样就解决了两人关系的处理，接下来再加上个人选文科或理科的收益即可。此时的一个割就代表了一种选科方案。<br>
+此题有一个细节：由于出现了分数，加边时需要乘二，在答案中减去时要除以二。<br>
+**总结：**对于存在两人关系的收益最大化题目，可以通过解方程求出边权，转化为最小割来求解。</p>
+<h2 id="3费用流的应用">3.费用流的应用</h2>
+<p><strong>例题五：</strong><a href="https://www.luogu.com.cn/problem/P3980">洛谷P3980 [NOI2008]志愿者招募</a><br>
+这道题初看可能毫无头绪，我们来尝试将其转化：一些志愿者工作，实际上就是另一些志愿者休假。<br>
+对于一个志愿者，他到了可以工作的那一天，要么开始连续工作，要么不工作<s>继续颓</s>。<br>
+那么我们可以尝试按天建图，每天向下一天连边<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>i</mi><mo separator="true">,</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mo>−</mo><msub><mi>a</mi><mi>i</mi></msub><mo separator="true">,</mo><mn>0</mn><mo>)</mo></mrow><annotation encoding="application/x-tex">(i,i+1,-a_i,0)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">i</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">−</span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mclose">)</span></span></span></span>表示这一天至少<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>个志愿者不颓废，每个志愿者连一条边<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><msub><mi>s</mi><mi>i</mi></msub><mo separator="true">,</mo><msub><mi>t</mi><mi>i</mi></msub><mo>+</mo><mn>1</mn><mo separator="true">,</mo><mn>0</mn><mo separator="true">,</mo><msub><mi>c</mi><mi>i</mi></msub><mo>)</mo></mrow><annotation encoding="application/x-tex">(s_i,t_i+1,0,c_i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span>表示他可以花费<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>c</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">c_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>从<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>s</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">s_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">s</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>开始工作到<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">t_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>。<br>
+最终建出来的图大概是这样的：<br>
+<img src="https://cdn.luogu.com.cn/upload/image_hosting/rk1o2v7m.png" alt="3.0.0" loading="lazy"><br>
+这样的话求最大流程序会在跑满免费的边之后自动用志愿者边填补空缺，同时也就求出了最小费用。<br>
+由于网络里不能有负流量边，我们把这些边都加上一个足够大的值（例如<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>+</mo><mi mathvariant="normal">∞</mi></mrow><annotation encoding="application/x-tex">+\infty</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord">+</span><span class="mord">∞</span></span></span></span>或<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>max</mi><mo>⁡</mo><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">\max a_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mop">max</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">a</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>等）再跑费用流即可。<br>
+<strong>总结：<strong>对于有最小代价且有个数限制的题目，可以尝试转化为最小费用最大流来求解。<br>
+<strong>例题六：</strong><a href="https://www.luogu.com.cn/problem/P4249">洛谷P4249 [WC2007]剪刀石头布</a><br>
+此题要求最多的三元环数量，不太好求。我们可以尝试将其转化为相反情况：求最少非环三元组数量。（也称之为</strong>补集转化</strong>）<br>
+可以发现此时的三个人一定是分别赢了2、1、0场，如果每个人分别赢了<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>w</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">w_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>场，那么他能构成的这种情况的数量就是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mo>∑</mo><mi>i</mi></msub><mrow><mo fence="true">(</mo><mfrac linethickness="0px"><msub><mi>w</mi><mi>i</mi></msub><mn>2</mn></mfrac><mo fence="true">)</mo></mrow><mo>=</mo><msub><mo>∑</mo><mi>i</mi></msub><mfrac><mrow><msub><mi>w</mi><mi>i</mi></msub><mo>(</mo><msub><mi>w</mi><mi>i</mi></msub><mo>−</mo><mn>1</mn><mo>)</mo></mrow><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">\sum_i\binom{w_i}{2}=\sum_i\frac{w_i(w_i-1)}{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.20001em;vertical-align:-0.35001em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16195399999999993em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size1">(</span></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7453919999999999em;"><span style="top:-2.3550000000000004em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.144em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.02691em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size1">)</span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.355em;vertical-align:-0.345em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16195399999999993em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.02691em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.02691em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>。<br>
+对于建图，我们可以对未进行的比赛建点，再向比赛双方连边（容量均为1），每个选手向汇点连容量为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>的边。可以发现此时一个一单位的流就代表了一个人的胜负情况。<br>
+那么我们把费用安到选手连汇点的边上，就可以用费用流解决啦！<s>（并不）</s><br>
+我们发现<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mo>∑</mo><mi>i</mi></msub><mfrac><mrow><msub><mi>w</mi><mi>i</mi></msub><mo>(</mo><msub><mi>w</mi><mi>i</mi></msub><mo>−</mo><mn>1</mn><mo>)</mo></mrow><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">\sum_i\frac{w_i(w_i-1)}{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.355em;vertical-align:-0.345em;"></span><span class="mop"><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.16195399999999993em;"><span style="top:-2.40029em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.29971000000000003em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.02691em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.02691em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>不是线性增长的，不能直接安到费用上，所以需要用到一个小技巧：拆边。<br>
+具体地说，发现<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mfrac><mrow><msub><mi>w</mi><mi>i</mi></msub><mo>(</mo><msub><mi>w</mi><mi>i</mi></msub><mo>−</mo><mn>1</mn><mo>)</mo></mrow><mn>2</mn></mfrac></mrow><annotation encoding="application/x-tex">\frac{w_i(w_i-1)}{2}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.355em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.485em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.02691em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mopen mtight">(</span><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3280857142857143em;"><span style="top:-2.357em;margin-left:-0.02691em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.143em;"><span></span></span></span></span></span></span><span class="mbin mtight">−</span><span class="mord mtight">1</span><span class="mclose mtight">)</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>可以拆成等差数列<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mo>+</mo><mn>1</mn><mo>+</mo><mo>⋯</mo><mo>+</mo><msub><mi>w</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">0+1+\cdots+w_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.58056em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的形式，于是我们就把一条边拆成很多容量为1，费用为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn><mo separator="true">,</mo><mn>1</mn><mo separator="true">,</mo><mo>⋯</mo><mtext> </mtext><mo separator="true">,</mo><msub><mi>w</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">0,1,\cdots, w_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8388800000000001em;vertical-align:-0.19444em;"></span><span class="mord">0</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">1</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="minner">⋯</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.02691em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>的边，这样的话就能满足题设条件了。<br>
+**总结：**此题用到的技巧主要有两个，一是答案不好直接求时进行补集转化，二是单位费用有变化时进行拆边。<br>
+<a href="https://www.cnblogs.com/juruoajh/p/14567772.html">终篇——杂项</a></p>
+<h2 id="0前言">0.前言</h2>
+<p>我之前写过三篇共一系列的<a href="https://www.cnblogs.com/juruoajh/p/14208194.html">网络流随记</a>，如果有没看过的同学可以先去看一下。<br>
+但是自己在做各种网络流题时又发现了一些没有写进前三篇博客里的知识点，在此做一个简单的整理~~（真的仅仅是整理，有些十分奇妙的做法我也不会证）~~。</p>
+<h2 id="1上下界网络流">1.上下界网络流</h2>
+<p>普通的最大流是相当于给出了一个流量上界，那么现在我们加入流量下界，其实解法是差不多的。</p>
+<h3 id="10-无源汇上下界可行流">1.0 无源汇上下界可行流</h3>
+<p>题目已经说得很清楚要干什么了。我们想要去除多出来的下界，于是先满足每个点的下界，但是这样显然可能造成流量不平衡（有的点多流入、有的点多流出）。于是我们把不平衡的流量转移到源点和汇点（本就应该不平衡），这样就可以让它们承担不平衡的锅而不用担心出错了。具体地说，每个点先满足下界，统计流入流出之差，多流入的从源点连，多流出的连到汇点。</p>
+<h3 id="11-有源汇上下界可行流">1.1 有源汇上下界可行流</h3>
+<p>现在多出了两个流量不平衡的点，刚刚的分析不能直接套入。但是我们发现源点流出的一定等于汇点流入的，所以我们从汇点到源点连一条流量正无穷的边<s>来假装它们流量平衡</s>，这样就可以跑 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1.0</mn></mrow><annotation encoding="application/x-tex">1.0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">0</span></span></span></span> 了。</p>
+<h3 id="12-有源汇上下界最大流">1.2 有源汇上下界最大流</h3>
+<p>可行流怎么增大？找增广路！现在我们把虚拟源点和虚拟汇点跑满了，那么就再从原图的源点到汇点跑一遍（注意删去容量正无穷的边）。</p>
+<h3 id="13-有源汇上下界最小费用可行流">1.3 有源汇上下界最小费用可行流</h3>
+<p>方法与 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1.1</mn></mrow><annotation encoding="application/x-tex">1.1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span><span class="mord">.</span><span class="mord">1</span></span></span></span> 类似，但是虚拟源点和虚拟汇点连的边费用为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0</mn></mrow><annotation encoding="application/x-tex">0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，其他边费用不变。这样先满足下界算出的费用，然后跑费用流即可。</p>
+<h3 id="14-习题">1.4 习题</h3>
+<p><strong>P1.0</strong> <a href="https://www.luogu.com.cn/problem/P5192">洛谷P5192 【模板】有源汇上下界最大流</a><br>
+<strong>P1.1</strong> <a href="https://www.luogu.com.cn/problem/P4043">洛谷P4043 [AHOI2014/JSOI2014]支线剧情</a></p>
+<h2 id="2最小割树gomory-hu-tree">2.最小割树（Gomory-Hu Tree）</h2>
+<p>有时，我们想要求出图中任意两点之间的最小割，这时暴力就不行了，需要效率更高的算法。<br>
+我们发现，朴素的算法枚举了所有点对，而这些点对之间的最小割有一些是重复的，最小割树就解决了这个问题。它的定义是：<br>
+对于每一条边 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>(</mo><mi>u</mi><mo separator="true">,</mo><mi>v</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">(u,v)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span><span class="mclose">)</span></span></span></span>，它的权值为原图 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi><mo separator="true">,</mo><mi>v</mi></mrow><annotation encoding="application/x-tex">u,v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span> 间最小割的值，且这条边恰好将最小割树分成原图上最小割所分割的两个点集。<br>
+<s>容易</s>发现这棵树上 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>u</mi><mo separator="true">,</mo><mi>v</mi></mrow><annotation encoding="application/x-tex">u,v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">u</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span> 之间最小权值即为原图中最小割，所以可以树上倍增求得。那么我们怎样构造这棵树呢？<br>
+我们随便取两个点求最小割，连边，再递归进分成的两个点集处理即可！这样，我们就把求最小割的次数从 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><msup><mi>n</mi><mn>2</mn></msup><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span> 减为了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo>(</mo><mi>n</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>，可以支持一般的查询。<br>
+代码如下：</p>
+<pre><code class="language-cpp">const int N=510,M=1510;
+int n,m,q;
+struct Graph {
+  struct Edge {
+    int to,nxt,wei;
+  }e[M&lt;&lt;2];
+  int hd[N],cnt=-1;
+  il void ade(int u,int v,int w){
+    e[++cnt].to=v,e[cnt].wei=w;
+    e[cnt].nxt=hd[u],hd[u]=cnt;
+    e[++cnt].to=u,e[cnt].wei=0;
+    e[cnt].nxt=hd[v],hd[v]=cnt;
+  }
+  int dep[N];
+  il bool BFS(int s,int t){
+    memset(dep,0,sizeof(dep));
+    queue&lt;int&gt; q;
+    q.push(s),dep[s]=1;
+    while(!q.empty()){
+      int u=q.front();q.pop();
+      for(rg int i=hd[u];~i;i=e[i].nxt){
+        int v=e[i].to;
+        if(!dep[v]&amp;&amp;e[i].wei){
+          q.push(v),dep[v]=dep[u]+1;
+        }
+      }
+    }
+    return dep[t];
+  }
+  int DFS(int u,int t,int flin){
+    if(u==t)return flin;
+    int flout=0;
+    for(rg int i=hd[u];~i&amp;&amp;flin;i=e[i].nxt){
+      int v=e[i].to,w=e[i].wei;
+      if(dep[v]==dep[u]+1&amp;&amp;w){
+        int mxfl=DFS(v,t,min(flin,w));
+        if(!mxfl){
+          dep[v]=-1;
+          continue;
+        }
+        e[i].wei-=mxfl,e[i^1].wei+=mxfl;
+        flin-=mxfl,flout+=mxfl;
+      }
+    }
+    return flout;
+  }
+  int Dinic(int s,int t){
+    for(rg int i=0;i&lt;=cnt;i+=2){
+      e[i].wei+=e[i^1].wei,e[i^1].wei=0;
+    }
+    int res=0;
+    while(BFS(s,t))res+=DFS(s,t,INF);
+    return res;
+  }
+}G;
+struct Tree {
+  struct Edge {
+    int to,nxt,wei;
+  }e[M&lt;&lt;1];
+  int hd[N],cnt;
+  il void ade(int u,int v,int w){
+    e[++cnt].to=v,e[cnt].wei=w;
+    e[cnt].nxt=hd[u],hd[u]=cnt;
+    e[++cnt].to=u,e[cnt].wei=w;
+    e[cnt].nxt=hd[v],hd[v]=cnt;
+  }
+  int fa[N][10],dep[N],d[N][10];
+  int v[N],t1[N],t2[N];
+  void Build(int l,int r){
+    if(l==r)return;
+    int s=v[l],t=v[l+1];
+    ade(s,t,G.Dinic(s,t));
+    int c1=0,c2=0;
+    for(rg int i=l;i&lt;=r;i++){
+      if(G.dep[v[i]])t1[++c1]=v[i];
+      else t2[++c2]=v[i];
+    }
+    for(rg int i=l;i&lt;=l+c1-1;i++)v[i]=t1[i-l+1];
+    for(rg int i=l+c1;i&lt;=r;i++)v[i]=t2[i-c1-l+1];
+    Build(l,l+c1-1),Build(l+c1,r);
+  }
+  void DFS(int u,int ff,int wei){
+    fa[u][0]=ff,dep[u]=dep[ff]+1,d[u][0]=wei;
+    for(rg int i=1;i&lt;=9;i++){
+      fa[u][i]=fa[fa[u][i-1]][i-1];
+      d[u][i]=min(d[u][i-1],d[fa[u][i-1]][i-1]);
+    }
+    for(rg int i=hd[u];i;i=e[i].nxt){
+      int v=e[i].to;
+      if(v!=ff)DFS(v,u,e[i].wei);
+    }
+  }
+  il int LCA(int u,int v){
+    int res=INF;
+    if(dep[u]&lt;dep[v])swap(u,v);
+    for(rg int i=9;i&gt;=0;i--){
+      if(dep[fa[u][i]]&gt;=dep[v]){
+        res=min(res,d[u][i]),u=fa[u][i];
+      }
+    }
+    if(u==v)return res;
+    for(rg int i=9;i&gt;=0;i--){
+      if(fa[u][i]!=fa[v][i]){
+        res=min(res,min(d[u][i],d[v][i]));
+        u=fa[u][i],v=fa[v][i];
+      }
+    }
+    return min(res,min(d[u][0],d[v][0]));
+  }
+  void Init(){
+    for(rg int i=1;i&lt;=n;i++)v[i]=i;
+    Build(1,n),DFS(1,0,0);
+  }
+}T;
+int main(){
+  Read(n),Read(m);
+  memset(G.hd,-1,sizeof(G.hd));
+  for(rg int i=1,u,v,w;i&lt;=m;i++){
+    Read(u),Read(v),Read(w);
+    G.ade(u,v,w),G.ade(v,u,w);
+  }
+  T.Init(),Read(q);
+  for(rg int i=1,u,v;i&lt;=q;i++){
+    Read(u),Read(v);
+    cout&lt;&lt;T.LCA(u,v)&lt;&lt;endl;
+  }
+  KafuuChino HotoKokoa
+}
+</code></pre>
+<p>双倍经验：<br>
+<strong>P2.0</strong> <a href="https://www.luogu.com.cn/problem/P4897">洛谷P4897 【模板】最小割树</a><br>
+<strong>P2.1</strong> <a href="https://www.luogu.com.cn/problem/P4123">洛谷P4123 [CQOI2016]不同的最小割</a></p>
+<h2 id="3完结撒花">3.完结撒花</h2>
+<p><s>屑作者直到现在依然懒得学 ISAP 和 HLPP，于是等着被毒瘤出题人卡 Dinic</s><br>
+祝各位遇到网络流题直接爆切！</p>
 
             </div>
             
@@ -355,7 +1394,7 @@
     </li>
     <li class="post-copyright-link">
       <strong class="language" data-lan="link">本文链接：</strong>
-      <a href="https://ajthreac.github.io/post/ajthreac-de-xin-bo-ke/" title="ajthreac的新博客">https://ajthreac.github.io/post/ajthreac-de-xin-bo-ke/</a>
+      <a href="https://ajthreac.github.io/post/zheng-li-wang-luo-liu-sui-ji/" title="【整理】网络流随记">https://ajthreac.github.io/post/zheng-li-wang-luo-liu-sui-ji/</a>
     </li>
     <li class="post-copyright-license">
       <strong class="language" data-lan="copyright">版权声明： </strong>
@@ -368,12 +1407,12 @@
   <div class="nav">
     <div class="nav-prev">
       
-        <i class="fa fa-chevron-left"></i>
-        <a class="nav-pc-next" title="【整理】矩阵加速总结" href="https://ajthreac.github.io/post/zheng-li-ju-zhen-jia-su-zong-jie/">【整理】矩阵加速总结</a class="nav-pc-next">
-        <a class="nav-mobile-prev" title="【整理】矩阵加速总结" href="https://ajthreac.github.io/post/zheng-li-ju-zhen-jia-su-zong-jie/">上一篇</a>
-      
     </div>
     <div class="nav-next">
+      
+        <a class="nav-pc-next" title="【整理】FFT（快速傅里叶变换）随记" href="https://ajthreac.github.io/post/zheng-li-fftkuai-su-fu-li-xie-bian-huan-sui-ji/">【整理】FFT（快速傅里叶变换）随记</a>
+        <a class="nav-mobile-next" title="【整理】FFT（快速傅里叶变换）随记" href="https://ajthreac.github.io/post/zheng-li-fftkuai-su-fu-li-xie-bian-huan-sui-ji/">下一篇</a>
+        <i class="fa fa-chevron-right"></i>
       
     </div>
   </div>
