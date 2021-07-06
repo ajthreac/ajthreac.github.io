@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://ajthreac.github.io</id>
     <title>ajthreac的小窝</title>
-    <updated>2021-07-06T11:29:13.882Z</updated>
+    <updated>2021-07-06T11:36:13.982Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://ajthreac.github.io"/>
     <link rel="self" href="https://ajthreac.github.io/atom.xml"/>
@@ -2069,7 +2069,9 @@ int main(){
         </link>
         <updated>2021-07-06T02:55:33.000Z</updated>
         <content type="html"><![CDATA[<p>主要用于存放一些自认为有价值的东西，会在<a href="https://www.cnblogs.com/juruoajh/">博客园</a>同步更新。<br>
-从博客园搬运来了一些远古文章用于留档，里面有些图是洛谷图床的，带有防盗链。但是不知为何在博客园可以正常显示，作者又咕咕咕懒得修，所以先去博客园看吧（</p>
+从博客园搬运来了一些远古文章用于留档，里面有些图是洛谷图床的，带有防盗链。但是不知为何在博客园可以正常显示，作者又咕咕咕懒得修，所以先去博客园看吧（<br>
+另外，有些作者懒直接插到博客园文章内的图片也可能无法正常显示……</p>
+<p>此博客的 Markdown 还存在亿些渲染问题，作者会想办法修复以尝试达到和博客园相同的效果~~（咕咕咕）~~</p>
 ]]></content>
     </entry>
 </feed>
